@@ -1,0 +1,185 @@
+
+
+
+Nombre 							Venta             Codigo    	Stock
+
+Anna de Sanctics---------------------------------------------------------------------------
+
+Tintura Ana de Sanctics 		400                
+Crema de Peinar Keratina        700
+Crema de Peinar Acido			700
+Crema de Peinar Ondulados		700
+
+Algabo--------------------------------------------------------------------
+QuitaEsmalte 60cc               120
+QuitaEsmalte 120cc              200
+Repuesto Jabon Liquido  220ml   140
+Repuesto Jabon Liquido  300ml   160
+Jabon Liquido Valvula   30ml    240
+
+Depimania----------------------------------------------------------------------
+
+Cera Depilatoria                380
+
+Depimiel-------------------------------------------------------------
+
+Sobres Depilacion Facial        100
+Crema Depilacion Sensitive		500	                    
+Crema Depilacion Teen 			520
+Crema Depilacion				400
+
+
+
+Eurostil-----------------------------------------------------------------
+Vaso Graduacion                 250
+Pincel Tintura Chico 			150
+Gorro Mechas                    400
+
+Frostburg------------------------------------------------------------------
+Lapiz Delineador                170
+
+
+Jactans--------------------------------------------------------------------
+Mascara de Pestañas             750
+
+Jessamy-------------------------------------------------------------------
+Espejo Cartera                  350
+Peine                           200
+Cortauñas                       250
+Piedra Pomes                    200
+
+Katalia--------------------------------------------------------------------
+Esmalte Brillo                  250
+Esmalte con Hexagonos           300
+Manteca Cacao                   250
+Lapiz Labial                    300
+Sombra Sol y Luna               350
+Polvo Compacto                  400
+Delineador Extra Fino           420
+Mascara jojoba                  550
+Sombra Practik                  230
+Gel Purpurina                   400
+
+Love-----------------------------------------------------------------------
+Delineador Extra Fino           350
+
+Mary Bosques-------------------------------------------------------------
+Tintura Mary 					250				   xxx
+Tintura Fantasia 				250                xxx
+Oxidante 						80                 xxx
+Tratamiento Sobre 10g/20g	    150                xxx
+Tratamiento Pote 200g			700
+Tratamiento Sachet 250g         800
+Polvo Decolorante Sobre 		200                xxx
+
+Midie---------------------------------------------------------------------
+Esmalte                         210
+Esmalte Glitter                 250
+Esmalte Pequeño                 150
+Polvo Compacto                  300
+Maquillaje Cremoso              320
+Iluminador                      300
+
+Mistic Vibe---------------------------------------------------------------
+Espejo Cartera Corazon          300
+
+
+NOV Native-------------------------------------------------------------
+TinturaNov 						350                xxx
+ShampooNeutro 1/2 litro			250 
+ShampooKeratina 1/2 litro       300
+Ampolla 						250                xxx
+Nutricion Medida                200
+
+Oli Profesional------------------------------------------------------------
+Tratamientos 1/2 Litro          800
+
+Otowil---------------------------------------------------------------------
+Mascara Espinilla               300
+Mascara Hidratante              320
+Antiage                         260
+Acido Hialuronico               240
+
+Plusbelle-----------------------------------------------------------------
+ShampooPlusbelle 				300                xxx
+
+Quico----------------------------------------------------------------------
+Arqueador de Pestañas           400
+Lima 180/240 g                  150
+Lima Esmeril                    50
+Set Brochas                     400
+
+Thelma y Louise------------------------------------------------------------
+Mascara de Pestañas             450
+
+Tejar---------------------------------------------------------------------
+Lapiz Delineador Sacapunta      200
+Delineador Retractil            200
+Sombra 5 colores                580
+Brocha Acrilico                 280
+Sombra 4 Glitter                720
+
+
+Upa la la-----------------------------------------------------------------
+Shampoo                         380
+Jabon                           210
+Colonia                         550
+
+Ultraliss-----------------------------------------------------------------
+AlisadoSueltoUltraliss 			250                xxx
+
+
+
+XZN------------------------------------------------------------------------
+Pinza Depilar Negra             150
+
+
+
+
+S/N------------------------------------------------------------------------
+Peine Familiar                  150
+Peine Cola Grande               150
+Uñas Postizas                   280
+Set Brochas 5 piezas            600
+PolvoDecoSuelto 				170                xxx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Crear un solo archivo con componentes con codigos que comienzan en 100 y van de 10 en 10
+cada código sera para buscar el Producto
+
+Cada Producto se coloca al final del archivo
+Pero para mostrar los productos primero se 
+generan listas con los productos y luego se 
+ordena la lista y se muestra en orden alfabético 
+
+Cuando se cargue un nuevo producto para vender este se guarda
+en el final del archivo
+
+VENTA
+Cuando se venda un producto se actualizara el stock
+Primero se muestra la lista ordenada con codigos
+se pide que se ingrese el codigo y se indique la cantidad vendida
+además se suman las ventas y se carga en un archivo de texto la venta realizada con fecha y hora
+si el dia de la fecha coincide con venta anterior no se coloca el dia sino el horario solamente.
+si el mes coincide con alguno anterior no se coloca el mes.
+
+
+Al actualizar precios primero se muestra una lista ordenada alfabeticamente con codigos
+se ingresa el codigo de producto, se busca en el archivo y se pide el nuevo precio, se actualiza el precio y se muestra un cartel con el nombre del producto y el precio nuevo
+
+El archivo Tinturas .txt se usa como archivo de caracteres para leer cada componente hasta detectar  el espacio
+
+
+

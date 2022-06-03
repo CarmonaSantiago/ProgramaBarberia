@@ -1,0 +1,52 @@
+# Project: Proyecto 1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o Venta.o OrdenaLista.o MostrarProductos.o MostrarVentas.o Modifica.o EliminaarLista.o CargaLista.o Carga.o
+LINKOBJ  = main.o Venta.o OrdenaLista.o MostrarProductos.o MostrarVentas.o Modifica.o EliminaarLista.o CargaLista.o Carga.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = "Proyecto 1.exe"
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+Venta.o: Venta.cpp
+	$(CPP) -c Venta.cpp -o Venta.o $(CXXFLAGS)
+
+OrdenaLista.o: OrdenaLista.cpp
+	$(CPP) -c OrdenaLista.cpp -o OrdenaLista.o $(CXXFLAGS)
+
+MostrarProductos.o: MostrarProductos.cpp
+	$(CPP) -c MostrarProductos.cpp -o MostrarProductos.o $(CXXFLAGS)
+
+MostrarVentas.o: MostrarVentas.cpp
+	$(CPP) -c MostrarVentas.cpp -o MostrarVentas.o $(CXXFLAGS)
+
+Modifica.o: Modifica.cpp
+	$(CPP) -c Modifica.cpp -o Modifica.o $(CXXFLAGS)
+
+EliminaarLista.o: EliminaarLista.cpp
+	$(CPP) -c EliminaarLista.cpp -o EliminaarLista.o $(CXXFLAGS)
+
+CargaLista.o: CargaLista.cpp
+	$(CPP) -c CargaLista.cpp -o CargaLista.o $(CXXFLAGS)
+
+Carga.o: Carga.cpp
+	$(CPP) -c Carga.cpp -o Carga.o $(CXXFLAGS)

@@ -1,0 +1,74 @@
+#include "Tipos.h"
+
+void Modificar()
+{
+	int cod;
+	int opc;
+	char* c;
+	string nom;
+	FILE* archi;
+	fpos_t x;
+	datos producto;
+	
+	fopen(archi,"a");
+	if(archi!=NULL)
+	{
+		printf("\tIngrese codigo del producto que desea modificar\n");
+		scanf("%d",&cod);
+		fflush(stdin);
+		fseek(archi,((cod-100)/10)*sizeof(datos),SEEK_SET);
+		fread(&producto,sizeof(producto),1,archi);
+		
+		printf("\tQue dato desea modificar?");
+	
+		printf("\t1:nombre\n");
+		printf("\t2:precio\n");
+		printf("\t3:stock\n");
+		printf("\t0:Terminar\n\t");
+		scanf("%d",&opc);
+	   
+	   while(opc)
+	   {
+	      switch(opc)
+		   {
+				case 1:
+					printf("\tIngrese nuevo nombre:\n\t");
+					gets(producto.nom);
+					fflush(stdin);
+				break;
+		
+				case 2:
+					printf("\tIngrese nuevo precio:\n\t");
+					scanf("%f",&producto.precio);
+					fflush(stdin);
+				break;
+					
+				case 3:
+					printf("\tIngrese nuevo stock:\n\t");
+					scanf("%d",&producto.stock);
+					fflush(stdin);
+				break;
+		
+			}
+				
+	   	    printf("\tQue otro dato desea modificar?");
+	
+			printf("\t1:nombre\n");
+			printf("\t2:precio\n");
+			printf("\t3:stock\n");
+			printf("\t0:Terminar\n\t");
+			scanf("%d",&opc);
+	   }
+	   if((producto.stock>0 && producto.stock<1000)&&(producto.precio>0 && producto.precio<10000)
+		{
+			fseek(archi,((cod-100)/10)*sizeof(datos),SEEK_SET);
+			fwrite(&producto,sizeof(producto),1,archi);
+		}
+		else
+		{
+			printf("\t #Error datos ingresados invalidos\n");
+		}	
+	}
+	
+	
+}

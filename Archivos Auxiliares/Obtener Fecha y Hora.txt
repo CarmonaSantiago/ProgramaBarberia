@@ -1,0 +1,165 @@
+La biblioteca estándar de C++ no proporciona un tipo de fecha adecuado. C++ hereda las estructuras y funciones para la manipulación de fecha y hora de C. Para acceder a las funciones y estructuras relacionadas con la fecha y la hora, debe incluir el archivo de encabezado <ctime> en su programa C++.
+
+
+Hay cuatro tipos relacionados con el tiempo: clock_t, time_t, size_t, y tm. Los tipos - clock_t, size_t y time_t son capaces de representar la hora y la fecha del sistema como algún tipo de número entero.
+
+El tipo de estructura tm contiene la fecha y la hora en forma de una estructura C que tiene los siguientes elementos:
+
+struct tm {
+   int tm_sec;   // segundos de 0 a 61
+   int tm_min;   // minutos de 0 a 59
+   int tm_hour;  // horas de 0 a 24
+   int tm_mday;  // dia de 1 a 31
+   int tm_mon;   // meses de 0 a 11
+   int tm_year;  // año desde 1900
+   int tm_wday;  // dias desde domingo
+   int tm_yday;  // dias desde el 1 de enero
+   int tm_isdst; // horas de horario de verano
+}
+Las siguientes son las funciones importantes que usamos mientras trabajamos con fecha y hora en C o C++. Todas estas funciones son parte de la biblioteca estándar de C y C++ y puede verificar sus detalles utilizando la referencia a la biblioteca estándar de C++ que se proporciona a continuación.
+
+No	Función y Propósito
+1	time_t time(time_t *time);
+
+Esto devuelve la hora actual del calendario del sistema en número de segundos transcurridos desde el 1 de enero de 1970. Si el sistema no tiene hora, se devuelve .1.
+
+2	char *ctime(const time_t *time);
+
+Esto devuelve un puntero a una cadena de la forma día mes año horas:minutos:segundos año\n\0 
+
+3	struct tm *localtime(const time_t *time);
+
+Esto devuelve un puntero a la estructura tm que representa la hora local.
+
+4	clock_t clock(void);
+
+Esto devuelve un valor que se aproxima a la cantidad de tiempo que se ha estado ejecutando el programa de llamada. Se devuelve un valor de .1 si el tiempo no está disponible.
+
+5	char * asctime ( const struct tm * time );
+
+Esto devuelve un puntero a una cadena que contiene la información almacenada en la estructura a la que apunta la hora convertida en el formato: día mes fecha horas:minutos:segundos año\n\0
+
+6	struct tm *gmtime(const time_t *time);
+
+Esto devuelve un puntero a la hora en forma de estructura tm. La hora se representa en la hora universal coordinada (UTC), que es esencialmente la hora del meridiano de Greenwich (GMT).
+
+7	time_t mktime(struct tm *time);
+
+Esto devuelve el equivalente en tiempo de calendario del tiempo que se encuentra en la estructura a la que apunta time.
+
+8	double difftime ( time_t time2, time_t time1 );
+
+Esta función calcula la diferencia en segundos entre time1 y time2
+
+
+9	size_t strftime();
+
+Esta función se puede utilizar para dar formato a la fecha y la hora en un formato específico.
+
+Fecha y hora actual
+Suponga que desea recuperar la fecha y hora actual del sistema, ya sea como hora local o como hora universal coordinada (UTC). El siguiente es el ejemplo para lograr lo mismo
+
+
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+   // fecha/hora actual según el sistema actual
+   time_t now = time(0);
+   
+   // convertir now a forma de cadena
+   char* dt = ctime(&now);
+
+   cout << "La fecha y hora local es: " << dt << endl;
+
+   // convert now to tm struct for UTC
+   tm *gmtm = gmtime(&now);
+   dt = asctime(gmtm);
+   cout << "La fecha y hora UTC es:"<< dt << endl;
+}
+Cuando el código anterior se compila y ejecuta, produce el siguiente resultado:
+
+La fecha y hora local es: Sat Jan  8 20:07:41 2011
+
+La fecha y hora UTC es:Sun Jan  9 03:07:41 2011
+
+Dar formato a la hora usando struct tm
+La estructura tm es muy importante cuando se trabaja con fecha y hora en C o C++. Esta estructura contiene la fecha y la hora en forma de estructura C, como se mencionó anteriormente. La mayoría de las veces, las funciones relacionadas utilizan la estructura tm. El siguiente es un ejemplo que hace uso de varias funciones relacionadas con la fecha y la hora y la estructura tm:
+
+Al usar la estructura en este capítulo, asumo que tiene una comprensión básica de la estructura C y cómo acceder a los miembros de la estructura usando la flecha -> operador.
+
+
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+   // fecha/hora actual según el sistema actual
+   time_t now = time(0);
+
+   cout << "Número de segundos desde el 1 de enero de 1970 es::  " << now << endl;
+
+   tm *ltm = localtime(&now);
+
+   // imprimir varios componentes de la estructura tm.
+
+   cout << "Año:" << 1900 + ltm->tm_year<<endl;
+   cout << "Mes: "<< 1 + ltm->tm_mon<< endl;
+   cout << "Dia: "<< ltm->tm_mday << endl;
+   cout << "Hora: "<< 5+ltm->tm_hour << ":";
+   cout << 30+ltm->tm_min << ":";
+   cout << ltm->tm_sec << endl;
+}
+Cuando el código anterior se compila y ejecuta, produce el siguiente resultado:
+
+El número de segundos desde el 1 de enero de 1970 es: 1588485717 
+Año: 2020 
+Mes: 5 
+Día 3 
+Hora: 11:31:57
+
+
+Sun Mar 06 18:08:29 2022 7 palabras 24 caracteres
+
+Sat :Sabado                   
+
+Sun :Domingo
+
+Mon :Lunes
+
+Tue :Martes
+
+Wed :Miercoles
+
+Thu :Jueves
+
+Fri :Viernes
+
+
+Jan :Enero
+
+Feb :Febrero
+
+Mar:Marzo
+
+Apr:Abril
+
+May:Mayo
+
+Jun:Junio
+
+Jul:Julio 
+
+Aug:Agosto
+
+Sep:Septiembre
+
+Oct:Octubre 
+
+Nov:Noviembre 
+
+Dec:Diciembre
+

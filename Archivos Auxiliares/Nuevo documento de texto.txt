@@ -1,0 +1,296 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef char string[30];
+struct datos
+{
+	string nom;
+	char num[10];
+	int stock;
+	float precio;
+};
+
+struct precio
+{
+	string
+}
+
+void menu1 ()
+{   
+    printf("\tSeleccione Operacion :\n");
+    printf("\t1 : Venta\n");                       //Realiza una venta modificando el stock;
+    //printf("\t2 : Consulta Stock\n");
+    printf("\t3 : Listar Productos\n");            //realiza un listado con la informacion actual de los productos
+    printf("\t4 : Cargar Nuevos Productos \n");    //Se añaden nuevos productos al catalogo
+    printf("\t5 : Agregar Stock ");                //Incrementa el Stock
+	//printf("\t6 : Total Recaudos\n");
+    printf("\t0 : Terminar\n\t");
+}
+
+void menu2 ()
+{
+	printf("\tSeleccione Tipo de Producto :\n");
+	printf("\t1 : Tinturas\n");
+    //printf("\t2 : Tratamientos\n");
+    //printf("\t3 : Oxidantes\n");
+    //printf("\t4 : Polvo decolorantes\n");
+    //printf("\t5 : Productos Oli\n");
+    printf("\t0 : Terminar\n\t");
+	
+}
+
+void menu3 ()
+{
+	printf("\tSeleccione Tintura :\n");
+	printf("\t1 : Ana de Sanctis\n");
+    printf("\t2 : Nov\n");
+    printf("\t3 : Mary Bosques\n");
+    printf("\t0 : Terminar\n\t");
+
+}
+void Tinturas()
+{
+	FILE *T;
+	datos tintura;
+	int opc;
+	menu3();
+	scanf("%d",&opc);
+	
+	
+	switch(opc)
+	{
+		case 1 : T=fopen("TinturasAna.dat","a");
+			    break;
+            
+		case 2:  T=fopen("TinturasNov.dat","a");
+				break;
+			
+		case 3:  T=fopen("TinturasMary.dat","a");
+				break;
+		
+		default: 
+			    break;
+	}
+		
+	if (T!=NULL)
+	{
+			    
+		printf("\tIngrese nombre :  (Ejemplo : Ciruela)\n\t");
+		fflush(stdin);
+		gets(tintura.nom);
+			    
+			    
+		while(strcmp(tintura.nom,"FIN")!=0)
+		{
+			printf("\tIngrese Numero :   (Ejemplo : 7.62):\n\t");
+			fflush(stdin);
+			gets(tintura.num);
+				    
+			printf("\tIngrese Stock\n\t");
+			fflush(stdin);
+			scanf("%d",&tintura.stock);
+					
+			fwrite(&tintura,sizeof(tintura),1,T);
+					
+			printf("HECHO\n");
+			printf("--------------------------------------------\n\n");
+					
+			printf("\tIngrese nombre :  (Ejemplo : Ciruela)");
+			printf("\tPara Terminar 'FIN' \n\t");
+			fflush(stdin);
+			gets(tintura.nom);	
+		}
+	
+	}
+	fclose(T);
+	
+}
+	
+
+
+void Carga ()
+{   
+    int opc;
+    printf("\t-----CARGA DE PRODUCTOS NUEVOS-----\n");
+	menu2();
+	fflush(stdin);
+	scanf("%d",&opc);
+
+	
+	switch(opc)
+	{
+		case 1:  Tinturas(); 
+		        break;	
+	} 
+	
+	
+}
+
+
+void MostrarTinturas(int opc)
+{   
+    
+    FILE *T;
+    datos tintura;
+	string marca;
+	switch(opc)
+		{
+			case 1 : T=fopen("TinturasAna.dat","r");
+			         strcpy(marca,"Ana de Sanctis");
+			       break;
+            
+			case 2:  T=fopen("TinturasNov.dat","r");
+			         strcpy(marca,"Nov");
+				   break;
+			
+			case 3:  T=fopen("TinturasMary.dat","r");
+			         strcpy(marca,"Mary Bosques");
+				   break;
+		
+			default: 
+			       break;
+		}
+	printf("\t-----LISTA DE TINTURAS %s-----\n",marca);
+	
+	while(fread(&tintura,sizeof(tintura),1,T))
+	{
+	    printf("\tNumero:\t%s\n",tintura.num);
+	    printf("\tNombre:\t%s\n",tintura.nom);
+	    printf("\tStock:\t%d\n",tintura.stock);
+
+	}
+	fclose(T);
+}
+
+
+void Listar ()
+{
+	int opc;
+	
+	system("cls");
+	menu2();
+	fflush(stdin);
+	scanf("%d",&opc);
+	
+	switch(opc)
+	{
+		case 1:  menu3();
+		        fflush(stdin);
+		        scanf("%d",&opc);
+		        MostrarTinturas(opc);
+		            
+		        break;	
+		}
+		 
+	
+}
+
+void VentaTinturas() //falta calcular la ganancia 
+{
+	FILE *T;
+	fpos_t x;
+	string marca,num;
+	int opc,unidades;
+	datos tintura;
+	
+	
+	menu3();
+	scanf("%d",&opc);
+	
+	switch(opc)
+	{
+		case 1 : T=fopen("TinturasAna.dat","r+");
+			    strcpy(marca,"Ana de Sanctis");
+			    break;
+            
+		case 2:  T=fopen("TinturasNov.dat","r+");
+			    strcpy(marca,"Nov");
+				break;
+			
+		case 3:  T=fopen("TinturasMary.dat","r+");
+			    strcpy(marca,"Mary Bosques");
+				break;
+		
+		default: 
+			    break;
+	}
+	
+	printf("\t%s\n",marca);
+	printf("\tIngrese numero de la tintura:         Ejemplo (7.65)\n");
+	fflush(stdin);
+	gets(num);
+	fread(&tintura,sizeof(tintura),1,T);
+	while(strcmp(num,tintura.num)!=0)
+	{
+		fread(&tintura,sizeof(tintura),1,T);
+	}
+	if(T!=NULL)
+	{   
+	    fgetpos(T,&x);
+	    fseek(T,x-sizeof(tintura),SEEK_SET);
+		printf("\tIngrese Unidades vendidas:\n");
+		fflush(stdin);
+		scanf("%d",&unidades);
+		
+		tintura.stock=tintura.stock-unidades;
+		fwrite(&tintura,sizeof(tintura),1,T);
+		printf("\t-----HECHO-----\n");
+		
+	}
+	else
+	{
+		printf("\tNo se encontro La tintura\n");
+	}
+	fclose(T);
+}
+
+
+void Ventas ()
+{
+	int opc;
+	menu2();
+	scanf("%d",&opc);
+	switch(opc)
+	{
+		case 1 : VentaTinturas();
+		         
+	}
+}
+
+int main()
+{
+	int opc;
+	
+	printf("\t###### BIENVENIDO AL PROGRAMA PARA CONTROL DE TRANSACCIONES Y STOCK  ###### \n");
+	
+	menu1();
+	fflush(stdin);
+	scanf("%d",&opc);
+	while(opc)
+	{
+		switch (opc)
+	    {
+            case 1 :  Ventas();
+	          break;
+	   
+	        //case 2 :
+	        //    break;
+	   
+	        case 3 : Listar();
+	            break;
+	   
+	        case 4 : Carga();
+	            break;
+	   
+	        default: 
+	            break;	
+	   }
+	   menu1();
+	   fflush(stdin);
+	   scanf("%d",&opc);
+	}
+	
+	
+}
